@@ -1,0 +1,23 @@
+{
+  "name": "SmartCart - Save on Every Shop",
+  "short_name": "SmartCart",
+  "description": "Compare grocery prices across stores and save money on every shopping trip.",
+  "theme_color": "#5a7a6a",
+  "background_color": "#faf9f7",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
