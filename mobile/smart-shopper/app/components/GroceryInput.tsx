@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { View, TextInput, Pressable, Text, ActivityIndicator, Keyboard } from 'react-native';
 import { Search, Plus } from 'lucide-react-native';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
+import { cn } from '../lib/utils'; // Assuming you're using NativeWind
 import { getSuggestions } from '../services/groceryService';
 
 interface GroceryInputProps {
@@ -13,9 +13,7 @@ export function GroceryInput({ onAdd, isLoading }: GroceryInputProps) {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const suggestionsRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -33,96 +31,83 @@ export function GroceryInput({ onAdd, isLoading }: GroceryInputProps) {
     return () => clearTimeout(debounce);
   }, [query]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (query.trim()) {
-      onAdd(query.trim());
+  const handleAdd = (value: string) => {
+    const trimmed = value.trim();
+    if (trimmed) {
+      onAdd(trimmed);
       setQuery('');
       setSuggestions([]);
       setShowSuggestions(false);
-      setSelectedIndex(-1);
+      Keyboard.dismiss(); // Closes the mobile keyboard
     }
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    onAdd(suggestion);
-    setQuery('');
-    setSuggestions([]);
-    setShowSuggestions(false);
-    setSelectedIndex(-1);
-    inputRef.current?.focus();
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!showSuggestions) return;
-
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedIndex(prev => Math.min(prev + 1, suggestions.length - 1));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedIndex(prev => Math.max(prev - 1, -1));
-    } else if (e.key === 'Enter' && selectedIndex >= 0) {
-      e.preventDefault();
-      handleSuggestionClick(suggestions[selectedIndex]);
-    } else if (e.key === 'Escape') {
-      setShowSuggestions(false);
-      setSelectedIndex(-1);
-    }
+    handleAdd(suggestion);
   };
 
   return (
-    <div className="relative w-full">
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
+    <View className="relative w-full z-50">
+      <View className="flex-row gap-2 items-center">
+        {/* Input Container */}
+        <View className="relative flex-1 justify-center">
+          <View className="absolute left-3 z-10">
+            <Search size={18} className="text-muted-foreground" />
+          </View>
+          
+          <TextInput
             ref={inputRef}
-            type="text"
             placeholder="Add grocery item..."
+            placeholderTextColor="#9ca3af"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onChangeText={setQuery}
+            onSubmitEditing={() => handleAdd(query)}
             onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-            className="pl-10 h-12 bg-card border-border/60 focus:border-primary/50 transition-colors"
-            disabled={isLoading}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+            className={cn(
+              "h-12 pl-10 pr-4 bg-card border border-border/60 rounded-xl text-foreground",
+              isLoading && "opacity-50"
+            )}
+            editable={!isLoading}
           />
-        </div>
-        <Button 
-          type="submit" 
-          size="lg" 
-          className="h-12 px-4"
+        </View>
+
+        {/* Add Button */}
+        <Pressable 
+          onPress={() => handleAdd(query)}
           disabled={!query.trim() || isLoading}
+          className={cn(
+            "h-12 w-12 items-center justify-center rounded-xl bg-primary",
+            (!query.trim() || isLoading) && "opacity-50"
+          )}
         >
-          <Plus className="h-5 w-5" />
-          <span className="sr-only">Add item</span>
-        </Button>
-      </form>
+          {isLoading ? (
+            <ActivityIndicator color="white" size="small" />
+          ) : (
+            <Plus size={24} color="white" />
+          )}
+        </Pressable>
+      </View>
 
       {/* Suggestions dropdown */}
       {showSuggestions && suggestions.length > 0 && (
-        <div 
-          ref={suggestionsRef}
-          className="absolute z-10 top-full left-0 right-12 mt-1 bg-card rounded-lg border border-border shadow-card overflow-hidden animate-fade-in"
+        <View 
+          className="absolute top-14 left-0 right-14 bg-card rounded-xl border border-border shadow-lg overflow-hidden z-50"
+          style={{ elevation: 5 }} // Required for Android shadow/layering
         >
-          {suggestions.map((suggestion, index) => (
-            <button
+          {suggestions.map((suggestion) => (
+            <Pressable
               key={suggestion}
-              type="button"
-              className={`w-full px-4 py-3 text-left text-sm transition-colors ${
-                index === selectedIndex 
-                  ? 'bg-accent text-accent-foreground' 
-                  : 'hover:bg-muted'
-              }`}
-              onMouseDown={() => handleSuggestionClick(suggestion)}
-              onMouseEnter={() => setSelectedIndex(index)}
+              onPress={() => handleSuggestionClick(suggestion)}
+              className="w-full px-4 py-4 border-b border-border/20 active:bg-muted"
             >
-              {suggestion}
-            </button>
+              <Text className="text-foreground text-sm font-medium">
+                {suggestion}
+              </Text>
+            </Pressable>
           ))}
-        </div>
+        </View>
       )}
-    </div>
+    </View>
   );
 }

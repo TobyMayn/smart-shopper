@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { toast } from 'sonner';
+import { View, ScrollView, SafeAreaView } from 'react-native'; // Added ScrollView and SafeAreaView
+import { toast } from 'sonner-native';
 import { AppHeader } from './components/AppHeader';
 import { GroceryInput } from './components/GroceryInput';
 import { GroceryList } from './components/GroceryList';
@@ -11,7 +12,6 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddItem = useCallback(async (itemName: string) => {
-    // Check for duplicates
     const exists = items.some(
       item => item.name.toLowerCase() === itemName.toLowerCase()
     );
@@ -22,7 +22,6 @@ const Index = () => {
     }
 
     setIsLoading(true);
-    
     try {
       const result = await searchGroceries({ query: itemName, limit: 1 });
       
@@ -38,13 +37,12 @@ const Index = () => {
         
         if (groceryItem.cheapestPrice) {
           toast.success(
-            `Added ${groceryItem.name} — Best price $${groceryItem.cheapestPrice.price.toFixed(2)} at ${groceryItem.cheapestPrice.storeName}`
+            `Added ${groceryItem.name} — Best price $${groceryItem.cheapestPrice.price.toFixed(2)}`
           );
         } else {
           toast.success(`Added ${groceryItem.name}`);
         }
       } else {
-        // Item not found in database, add as custom item
         const customItem: ShoppingListItem = {
           id: `custom-${Date.now()}`,
           name: itemName,
@@ -54,13 +52,12 @@ const Index = () => {
           checked: false,
           addedAt: new Date(),
         };
-        
         setItems(prev => [customItem, ...prev]);
-        toast.info(`Added ${itemName} — No price data available`);
+        toast.info(`Added ${itemName}`);
       }
     } catch (error) {
       console.error('Error adding item:', error);
-      toast.error('Failed to add item. Please try again.');
+      toast.error('Failed to add item');
     } finally {
       setIsLoading(false);
     }
@@ -69,33 +66,40 @@ const Index = () => {
   const handleRemoveItem = useCallback((id: string) => {
     setItems(prev => {
       const item = prev.find(i => i.id === id);
-      if (item) {
-        toast.success(`Removed ${item.name}`);
-      }
+      if (item) toast.success(`Removed ${item.name}`);
       return prev.filter(i => i.id !== id);
     });
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    // flex-1 replaces min-h-screen for mobile
+    <SafeAreaView className="flex-1 bg-background">
       <AppHeader />
       
-      <main className="container max-w-lg mx-auto px-4 py-6 space-y-6">
+      {/* ScrollView allows the list to scroll. 
+          keyboardShouldPersistTaps="handled" ensures clicking suggestions 
+          works even while the keyboard is open.
+      */}
+      <ScrollView 
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 24 }}
+        keyboardShouldPersistTaps="handled"
+      >
         {/* Input section */}
-        <section>
+        <View className="mb-6">
           <GroceryInput onAdd={handleAddItem} isLoading={isLoading} />
-        </section>
+        </View>
 
         {/* List section */}
-        <section>
+        <View>
           <GroceryList 
             items={items} 
             onRemove={handleRemoveItem}
             isLoading={isLoading}
           />
-        </section>
-      </main>
-    </div>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
