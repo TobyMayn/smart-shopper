@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smart Shopping List - Minimalist Muted Design System */
+
+@layer base {
+  :root {
+    /* Muted sage green palette - savings/money theme */
+    --background: 40 20% 98%;
+    --foreground: 200 10% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 10% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 10% 20%;
+
+    /* Muted sage green as primary */
+    --primary: 150 20% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Warm gray secondary */
+    --secondary: 30 10% 92%;
+    --secondary-foreground: 200 10% 25%;
+
+    --muted: 40 15% 94%;
+    --muted-foreground: 200 8% 50%;
+
+    /* Soft sage accent */
+    --accent: 150 15% 88%;
+    --accent-foreground: 150 20% 30%;
+
+    --destructive: 0 50% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 90%;
+    --ring: 150 20% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --savings: 150 25% 40%;
+    --savings-foreground: 0 0% 100%;
+    --savings-light: 150 20% 92%;
+    
+    --store-badge: 200 15% 45%;
+    --store-badge-foreground: 0 0% 100%;
+
+    --price-low: 150 30% 40%;
+    --price-high: 0 40% 55%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(200 10% 20% / 0.04);
+    --shadow-md: 0 4px 6px -1px hsl(200 10% 20% / 0.06), 0 2px 4px -2px hsl(200 10% 20% / 0.04);
+    --shadow-lg: 0 10px 15px -3px hsl(200 10% 20% / 0.08), 0 4px 6px -4px hsl(200 10% 20% / 0.04);
+
+    /* Sidebar */
+    --sidebar-background: 40 20% 97%;
+    --sidebar-foreground: 200 10% 20%;
+    --sidebar-primary: 150 20% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 15% 90%;
+    --sidebar-accent-foreground: 150 20% 30%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 150 20% 45%;
+  }
+
+  .dark {
+    --background: 200 15% 10%;
+    --foreground: 40 15% 95%;
+
+    --card: 200 12% 14%;
+    --card-foreground: 40 15% 95%;
+
+    --popover: 200 12% 14%;
+    --popover-foreground: 40 15% 95%;
+
+    --primary: 150 25% 50%;
+    --primary-foreground: 200 15% 10%;
+
+    --secondary: 200 10% 18%;
+    --secondary-foreground: 40 15% 90%;
+
+    --muted: 200 10% 18%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 150 15% 22%;
+    --accent-foreground: 150 20% 80%;
+
+    --destructive: 0 50% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 10% 20%;
+    --input: 200 10% 20%;
+    --ring: 150 25% 50%;
+
+    --savings: 150 30% 50%;
+    --savings-foreground: 200 15% 10%;
+    --savings-light: 150 20% 18%;
+
+    --store-badge: 200 20% 50%;
+    --store-badge-foreground: 200 15% 10%;
+
+    --price-low: 150 35% 50%;
+    --price-high: 0 45% 55%;
+
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.25), 0 2px 4px -2px hsl(0 0% 0% / 0.15);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
+
+    --sidebar-background: 200 12% 12%;
+    --sidebar-foreground: 40 15% 95%;
+    --sidebar-primary: 150 25% 50%;
+    --sidebar-primary-foreground: 200 15% 10%;
+    --sidebar-accent: 150 15% 20%;
+    --sidebar-accent-foreground: 150 20% 80%;
+    --sidebar-border: 200 10% 20%;
+    --sidebar-ring: 150 25% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .text-savings {
+    color: hsl(var(--savings));
+  }
+
+  .bg-savings {
+    background-color: hsl(var(--savings));
+  }
+
+  .bg-savings-light {
+    background-color: hsl(var(--savings-light));
+  }
+
+  .text-price-low {
+    color: hsl(var(--price-low));
+  }
+
+  .text-price-high {
+    color: hsl(var(--price-high));
+  }
+
+  /* Smooth transitions */
+  .transition-card {
+    @apply transition-all duration-200 ease-out;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
