@@ -1,5 +1,5 @@
 import React from 'react';
-import AppHeader from './components/AppHeader';
+import AppHeader from '../components/AppHeader';
 import {View, ScrollView, Text} from 'react-native';
 
 const Index = () => {
