@@ -12,8 +12,10 @@ const Index = () => {
     if (cardEmpty){
       setCardEmpty(false);
     }
-    setCart(cart.concat(item.trim()));
-    setQuery('');
+    if (item.trim()){
+      setCart(cart.concat(item.trim()));
+      setQuery('');
+    }
   }
 
   function removeItem(groceryIndex: number){ 
