@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 import AppHeader from '../components/AppHeader';
 import {View, ScrollView, Text, TextInput, StyleSheet, Button} from 'react-native';
 
