@@ -1,6 +1,11 @@
-# Welcome to your Expo app 👋
+# Welcome to Smart Shopper 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+I created a very basic frontend app using Lovable to test it out. As Lovable is only able to create apps for the web, I wanted to port it to React Native.
+This is my project for just that. I will be porting the existing web app to React Native, and integrate it with my own backend, one the basic features of the native app is complete. 
+
+The end goal is to create a somewhat simple Android/IOS app for creating shopping lists when grocery shopping, that will automatically find any discount available. The app will also show the running total and the potential savings scored from the discounts.
 
 ## Get started
 
@@ -23,28 +28,10 @@ In the output, you'll find options to open the app in a
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Running tests
 
-## Get a fresh project
-
-When you're ready, run:
+To run tests 
 
 ```bash
-npm run reset-project
+npm run test
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
