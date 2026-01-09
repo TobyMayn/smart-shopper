@@ -4,9 +4,9 @@
 
 /* Smart Shopping List - Minimalist Muted Design System */
 
-@layer base {
+/*@layer base {
   :root {
-    /* Muted sage green palette - savings/money theme */
+    !* Muted sage green palette - savings/money theme *!
     --background: 40 20% 98%;
     --foreground: 200 10% 20%;
 
@@ -16,18 +16,18 @@
     --popover: 0 0% 100%;
     --popover-foreground: 200 10% 20%;
 
-    /* Muted sage green as primary */
+    !* Muted sage green as primary *!
     --primary: 150 20% 45%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm gray secondary */
+    !* Warm gray secondary *!
     --secondary: 30 10% 92%;
     --secondary-foreground: 200 10% 25%;
 
     --muted: 40 15% 94%;
     --muted-foreground: 200 8% 50%;
 
-    /* Soft sage accent */
+    !* Soft sage accent *!
     --accent: 150 15% 88%;
     --accent-foreground: 150 20% 30%;
 
@@ -40,7 +40,7 @@
 
     --radius: 0.75rem;
 
-    /* Custom tokens */
+    !* Custom tokens *!
     --savings: 150 25% 40%;
     --savings-foreground: 0 0% 100%;
     --savings-light: 150 20% 92%;
@@ -51,12 +51,12 @@
     --price-low: 150 30% 40%;
     --price-high: 0 40% 55%;
 
-    /* Shadows */
+    !* Shadows *!
     --shadow-sm: 0 1px 2px 0 hsl(200 10% 20% / 0.04);
     --shadow-md: 0 4px 6px -1px hsl(200 10% 20% / 0.06), 0 2px 4px -2px hsl(200 10% 20% / 0.04);
     --shadow-lg: 0 10px 15px -3px hsl(200 10% 20% / 0.08), 0 4px 6px -4px hsl(200 10% 20% / 0.04);
 
-    /* Sidebar */
+    !* Sidebar *!
     --sidebar-background: 40 20% 97%;
     --sidebar-foreground: 200 10% 20%;
     --sidebar-primary: 150 20% 45%;
@@ -161,13 +161,13 @@
     color: hsl(var(--price-high));
   }
 
-  /* Smooth transitions */
+  !* Smooth transitions *!
   .transition-card {
     @apply transition-all duration-200 ease-out;
   }
 }
 
-/* Custom scrollbar */
+!* Custom scrollbar *!
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -185,4 +185,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
-}
+} */

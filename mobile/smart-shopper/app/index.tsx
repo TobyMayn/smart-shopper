@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AppHeader from '../components/AppHeader';
 import {View, ScrollView, Text, TextInput, StyleSheet, Button} from 'react-native';
+import '../global.css';
 
 const Index = () => {
 
@@ -27,7 +28,7 @@ const Index = () => {
     
   }
   return (
-    <View>
+    <View className='bg-black'>
       <View>
         <AppHeader />
       </View>
@@ -35,7 +36,6 @@ const Index = () => {
       <ScrollView>
         <Text>Add groceries:</Text>
         <TextInput 
-          style={inputStyle.inputField}
           placeholder='Add Grocery'
           value={query}
           onChangeText={(e) => setQuery(e)}
@@ -44,7 +44,7 @@ const Index = () => {
 
         {cardEmpty && cart.length === 0 && (
           <View>
-            <Text>Card is empty</Text>
+            <Text className='italic'>Card is empty</Text>
             <Text>Add items to the cart</Text>
           </View>
         )}
