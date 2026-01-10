@@ -1,9 +1,7 @@
 import { Wallet } from 'lucide-react-native';
 import {Text, View} from 'react-native';
-import {verifyInstallation} from 'nativewind';
 
 export default function AppHeader() {
-  verifyInstallation();
   return (
     <View className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border/40">
       <View  className="container max-w-lg mx-auto px-4 py-4">
