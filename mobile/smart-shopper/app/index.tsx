@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AppHeader from '../components/AppHeader';
-import {View, ScrollView, Text, TextInput, StyleSheet, Button} from 'react-native';
+import {View, ScrollView, Text, TextInput, StyleSheet, Button, Pressable} from 'react-native';
 import '../global.css';
 
 const Index = () => {
@@ -28,7 +28,7 @@ const Index = () => {
     
   }
   return (
-    <View className='bg-black'>
+    <View>
       <View>
         <AppHeader />
       </View>
@@ -40,7 +40,9 @@ const Index = () => {
           value={query}
           onChangeText={(e) => setQuery(e)}
         />
-        <Button title='Add' onPress={() =>{addItem(query)}}/>
+        <Pressable onPress={() =>{addItem(query)}}>
+          <Text>Add</Text>
+        </Pressable>
 
         {cardEmpty && cart.length === 0 && (
           <View>
@@ -53,7 +55,9 @@ const Index = () => {
             {cart.map((item, index) => (
               <View key={index}>
                 <Text key={index}>{index + ' ' + item}</Text>
-                <Button title='Remove Item' onPress={()=>{removeItem(index)}}/>
+                <Pressable onPress={()=>{removeItem(index)}}>
+                  <Text>Remove Item</Text>
+                </Pressable>
               </View>
             ))}
           </View>
