@@ -9,9 +9,9 @@ interface CartItemProps {
 export function CartItem({ id, onRemove, item }: CartItemProps){
 
     return (
-        <View>
-            <Text key={id}>{id + ' ' + item}</Text>
-            <Pressable onPress={()=>{onRemove(id)}}>
+        <View className="flex flex-row m-2 p-2">
+            <Text key={id} className="flex-1 align-middle">{item}</Text>
+            <Pressable onPress={()=>{onRemove(id)}} className="border-1 rounded-md p-1">
                 <Text>Remove Item</Text>
             </Pressable>
         </View>

@@ -13,9 +13,9 @@ export function GroceryCart({cart, onRemove, cartEmpty}: GroceryCartProps) {
     return (
         <View>
             {cartEmpty && cart.length === 0 && (
-                <View>
-                    <Text>Card is empty</Text>
-                    <Text>Add items to the cart</Text>
+                <View className='flex items-center'>
+                    <Text className='italic'>Card is empty</Text>
+                    <Text className='italic'>Add items to the cart</Text>
                 </View>
             )}
             {cart.length > 0 && (
