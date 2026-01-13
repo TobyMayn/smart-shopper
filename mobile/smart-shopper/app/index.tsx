@@ -35,7 +35,7 @@ const Index = () => {
         <AppHeader />
       </View>
 
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps='handled'>
         <GroceryInput onAdd={addItem}/>
 
         <GroceryCart cart={cart} onRemove={removeItem} cartEmpty />
