@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import AppHeader from '../components/AppHeader';
 import {View, ScrollView, Text, TextInput, StyleSheet, Button, Pressable} from 'react-native';
+import { GroceryInput } from '@/components/GroceryInput';
 import '../global.css';
 
 const Index = () => {
@@ -14,6 +15,7 @@ const Index = () => {
       setCardEmpty(false);
     }
     if (item.trim()){
+      
       setCart(cart.concat(item.trim()));
       setQuery('');
     }
@@ -27,6 +29,7 @@ const Index = () => {
     groceryIndex + 1)]);
     
   }
+
   return (
     <View>
       <View>
@@ -34,19 +37,11 @@ const Index = () => {
       </View>
 
       <ScrollView>
-        <Text>Add groceries:</Text>
-        <TextInput 
-          placeholder='Add Grocery'
-          value={query}
-          onChangeText={(e) => setQuery(e)}
-        />
-        <Pressable onPress={() =>{addItem(query)}}>
-          <Text>Add</Text>
-        </Pressable>
+        <GroceryInput onAdd={addItem}/>
 
         {cardEmpty && cart.length === 0 && (
           <View>
-            <Text className='italic'>Card is empty</Text>
+            <Text>Card is empty</Text>
             <Text>Add items to the cart</Text>
           </View>
         )}
