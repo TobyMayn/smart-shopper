@@ -11,11 +11,11 @@ const Index = () => {
   const [cart, setCart] = useState<string[]>([]);
 
   function addItem(item: string){
-    if (cardEmpty){
-      setCardEmpty(false);
-    }
+    
     if (item.trim()){
-      
+      if (cardEmpty){
+        setCardEmpty(false);
+      }
       setCart(cart.concat(item.trim()));
       setQuery('');
     }
