@@ -1,9 +1,10 @@
 import {View, Pressable, Text} from 'react-native';
+import { CartItem } from './CartItem';
 
 interface GroceryCartProps {
-    cart: string[],
-    onRemove: (id: number) => void,
-    cartEmpty: boolean
+    cart: string[];
+    onRemove: (id: number) => void;
+    cartEmpty: boolean;
 
 }
 
@@ -21,10 +22,7 @@ export function GroceryCart({cart, onRemove, cartEmpty}: GroceryCartProps) {
                 <View>
                 {cart.map((item, index) => (
                     <View key={index}>
-                        <Text key={index}>{index + ' ' + item}</Text>
-                        <Pressable onPress={()=>{onRemove(index)}}>
-                            <Text>Remove Item</Text>
-                        </Pressable>
+                        <CartItem id={index} onRemove={onRemove} item={item}/>
                     </View>
                 ))}
                 </View>
