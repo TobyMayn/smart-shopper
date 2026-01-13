@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import AppHeader from '../components/AppHeader';
-import {View, ScrollView, Text, TextInput, StyleSheet, Button, Pressable} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import { GroceryInput } from '@/components/GroceryInput';
 import '../global.css';
 import { GroceryCart } from '@/components/GroceryCart';
@@ -30,7 +30,7 @@ const Index = () => {
   }
 
   return (
-    <View>
+    <View className='h-screen bg-white mt-12'>
       <View>
         <AppHeader />
       </View>
