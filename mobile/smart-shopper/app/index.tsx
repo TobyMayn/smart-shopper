@@ -44,10 +44,4 @@ const Index = () => {
   );
 };
 
-const inputStyle = StyleSheet.create({
-  inputField: {
-    borderWidth: 1,
-    color: 'black',
-  }
-})
 export default Index;
