@@ -3,21 +3,20 @@ import AppHeader from '../components/AppHeader';
 import {View, ScrollView, Text, TextInput, StyleSheet, Button, Pressable} from 'react-native';
 import { GroceryInput } from '@/components/GroceryInput';
 import '../global.css';
+import { GroceryCart } from '@/components/GroceryCart';
 
 const Index = () => {
 
-  const [query, setQuery] = useState('');
-  const [cardEmpty, setCardEmpty] = useState(true);
+  const [cartEmpty, setCardEmpty] = useState(true);
   const [cart, setCart] = useState<string[]>([]);
 
   function addItem(item: string){
     
     if (item.trim()){
-      if (cardEmpty){
+      if (cartEmpty){
         setCardEmpty(false);
       }
       setCart(cart.concat(item.trim()));
-      setQuery('');
     }
   }
 
@@ -39,24 +38,7 @@ const Index = () => {
       <ScrollView>
         <GroceryInput onAdd={addItem}/>
 
-        {cardEmpty && cart.length === 0 && (
-          <View>
-            <Text>Card is empty</Text>
-            <Text>Add items to the cart</Text>
-          </View>
-        )}
-        {cart.length > 0 && (
-          <View>
-            {cart.map((item, index) => (
-              <View key={index}>
-                <Text key={index}>{index + ' ' + item}</Text>
-                <Pressable onPress={()=>{removeItem(index)}}>
-                  <Text>Remove Item</Text>
-                </Pressable>
-              </View>
-            ))}
-          </View>
-        )}
+        <GroceryCart cart={cart} onRemove={removeItem} cartEmpty />
       </ScrollView>
     </View>
   );
