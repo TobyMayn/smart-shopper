@@ -24,8 +24,10 @@ const Index = () => {
     if (cart.length === 1) {
       setCardEmpty(true)
     }
-    setCart([...cart.slice(0, groceryIndex), ...cart.slice(
-    groceryIndex + 1)]);
+    setCart([
+      ...cart.slice(0, groceryIndex), 
+      ...cart.slice(groceryIndex + 1)
+    ]);
     
   }
 
