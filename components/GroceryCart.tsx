@@ -1,6 +1,6 @@
-import {View, Pressable, Text} from 'react-native';
-import { CartItem } from './CartItem';
 import { ShoppingListItem } from '@/types/grocery';
+import { Text, View } from 'react-native';
+import { CartItem } from './CartItem';
 
 interface GroceryCartProps {
     cart: ShoppingListItem[];

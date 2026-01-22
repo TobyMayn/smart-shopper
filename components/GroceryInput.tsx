@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
 import { Plus } from "lucide-react-native";
+import { useState } from "react";
+import { Pressable, TextInput, View } from "react-native";
 
 
 interface GroceryInputProps {

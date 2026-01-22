@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import AppHeader from '../components/AppHeader';
-import {View, ScrollView} from 'react-native';
-import { GroceryInput } from '@/components/GroceryInput';
-import '../global.css';
-import { searchGroceries } from '@/services/groceryService';
+import AppHeader from '@/components/AppHeader';
 import { GroceryCart } from '@/components/GroceryCart';
-import { ShoppingListItem, ShoppingList } from '@/types/grocery';
+import { GroceryInput } from '@/components/GroceryInput';
+import { searchGroceries } from '@/services/groceryService';
+import { ShoppingListItem } from '@/types/grocery';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import '../global.css';
 
 const Index = () => {
 

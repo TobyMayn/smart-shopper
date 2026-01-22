@@ -1,6 +1,6 @@
-import { Text, View, Pressable } from "react-native";
-import { Trash2 } from "lucide-react-native";
 import { ShoppingListItem } from "@/types/grocery";
+import { Trash2 } from "lucide-react-native";
+import { Pressable, Text, View } from "react-native";
 
 interface CartItemProps {
     id: number;
@@ -10,7 +10,6 @@ interface CartItemProps {
 
 export function CartItem({ id, onRemove, item }: CartItemProps){
     const cheapest = item.cheapestPrice;
-    const savings = item.potentialSavings;
     return (
         <View className="flex flex-row m-2 p-2">
             <Text key={id} className="flex-1 align-middle">{item.name}</Text>
