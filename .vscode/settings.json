@@ -3,5 +3,6 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "dotnet.defaultSolution": "smart-shopper-backend.sln"
 }
