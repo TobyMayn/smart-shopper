@@ -1,11 +1,17 @@
-import requests
+import os
 
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+USER_AGENT = os.getenv("USER_AGENT")
+FROM = os.getenv("FROM")
 
 class RequestHandler():
     url: str = ""
     headers = {
-        "User-Agent": "Smart Shopper 1.0",
-        'From': 'compilercrafts@gmail.com'
+        "User-Agent": USER_AGENT,
+        'From': FROM
     }
 
     def get(self, endpoint: str) -> dict:
